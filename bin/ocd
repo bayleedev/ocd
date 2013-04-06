@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'ocd'
+require_relative '../lib/ocd'
+
+OCD::Runner.main(OCD::Options.new.parse)

@@ -1,0 +1,10 @@
+---
+- :suite: Foo
+  :paths:
+      - ! '**/*.rb'
+  :rules:
+  - :name: FooRule
+    :path: /absolute/path/foo_rule.rb
+    :config:
+      :soft_line_limit: 100
+      :hard_line_limit: 120
