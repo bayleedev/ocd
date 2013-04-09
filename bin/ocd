@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
 require_relative '../lib/ocd'
 
-OCD::Runner.main(OCD::Options.new.parse)
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ocd [options]"
+  opts.on("-c", "--config FILE", "Configuration file") do |file|
+    options[:config] = file
+  end
+end.parse!
+
+OCD::Runner.main(options)
