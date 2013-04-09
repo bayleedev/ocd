@@ -5,7 +5,7 @@ require 'pry'
 module OCD
   module OutputAdapters
 
-    class Cli <                                                                                OCD::Output
+    class Cli < OCD::Output
 
       def initialize
         @items = []
@@ -15,13 +15,16 @@ module OCD
       def notify(level, item)
         if level == :suite
           suite(item)
-        else
+        elsif level == :file
           file(item)
         end
       end
 
       def suite(name)
-        puts ANSI::Code.green{ "Suite: #{name}" }
+        puts ANSI::Code.green {
+          title = "Suite: #{name}"
+          title += "\n" + ("=" * title.length)
+        }
       end
 
       def file(file_model)
@@ -42,15 +45,14 @@ module OCD
       end
 
       def output(items, color)
-          data = [
-            ['Line', 'Position', 'Rule', 'Warning'],
-            ['====', '========', '====', '=======']
-          ]
-          items.each do |item|
-            data << [item[:line], item[:position], item[:rule], item[:message]]
-          end
-          puts ANSI::Code.red{ ANSI::Table.new(data) } if color == :red
-          puts ANSI::Code.yellow{ ANSI::Table.new(data) } if color == :yellow
+        data = [
+          ['Line', 'Position', 'Rule', 'Warning'],
+          ['====', '========', '====', '=======']
+        ]
+        items.each do |item|
+          data << [item[:line], item[:position], item[:rule], item[:message]]
+        end
+        puts ANSI::Code.send(color) { ANSI::Table.new(data) }
       end
 
     end

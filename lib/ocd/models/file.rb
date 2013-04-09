@@ -18,7 +18,8 @@ module OCD
       def initialize(file, mode = 'r', options = {})
         super
         @foo_file = file
-        @violations = @warnings = []
+        @warnings = []
+        @violations = []
         @default_options = {
           message: 'Unknown error occured.',
           rule: 'Unknown',

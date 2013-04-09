@@ -1,4 +1,3 @@
-# Abstract view of how all the classes interact with each other.
 module OCD
   module Rules
     module Basic
@@ -17,13 +16,13 @@ module OCD
             length = line.to_s.sub(/\n\z/, '').length
             if length > @config[:hard_line_limit]
               file_model.add_violation(
-                line: index,
+                line: index + 1,
                 rule: self.class.name,
                 message: "Line exceeds hard limit of #{@config[:hard_line_limit]}"
               )
             elsif length > @config[:soft_line_limit]
               file_model.add_warning(
-                line: index,
+                line: index + 1,
                 rule: self.class.name,
                 message: "Line exceeds soft limit of #{@config[:soft_line_limit]}"
               )

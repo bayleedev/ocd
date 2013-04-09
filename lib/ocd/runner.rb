@@ -18,6 +18,7 @@ module OCD
           output.notify(:file, file_model)
           file_model = nil
         end
+        output.notify(:eos, suite[:name])
       end
     end
 
