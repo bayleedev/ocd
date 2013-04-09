@@ -1,6 +1,5 @@
 require 'ansi/code'
 require 'ansi/columns'
-require 'pry'
 
 module OCD
   module OutputAdapters

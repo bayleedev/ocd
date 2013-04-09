@@ -25,14 +25,14 @@ module OCD
         end
       end
 
-      # Set the configuration and merge existing configuration.
+      # Set or merge existing configuration.
       def config=(options)
         @config = options
       end
 
       # Each enabled rule wil have a file_model passed to it
       def apply(file_model)
-        raise new OCD::Exceptions::RuleNotImplemented.new('Rule has not been implemented')
+        raise OCD::RuleNotImplemented.new('Rule has not been implemented')
       end
 
       # If this rule should be enabled.

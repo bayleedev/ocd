@@ -9,7 +9,7 @@ module OCD
       output = OCD::Output.adapter('cli')
       suites = YAML.load_file(options[:config])
       suites.each do |suite|
-        output.notify(:suite, suite[:name] || 'Main')
+        output.notify(:suite, suite[:suite] || 'Main')
         rules = OCD::Models::Rule.where(suite[:rules])
         OCD::Models::File.where(suite[:paths]).map do |file_model|
           rules.each do |rule|
@@ -18,7 +18,7 @@ module OCD
           output.notify(:file, file_model)
           file_model = nil
         end
-        output.notify(:eos, suite[:name])
+        output.notify(:eos, suite[:suite])
       end
     end
 

@@ -10,12 +10,12 @@ describe OCD::Output do
 
   end
 
-  describe '.update' do
+  describe '.notify' do
 
     subject{ OCD::Output.new }
 
     it 'must must throw UnimplementedMethod' do
-      expect{ subject.update(:warning, {}) }.to raise_exception(OCD::UnimplementedMethod)
+      expect{ subject.notify(:warning, {}) }.to raise_exception(OCD::UnimplementedMethod)
     end
 
   end

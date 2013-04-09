@@ -1,5 +1,3 @@
-require 'observer'
-
 module OCD
 
   module Models
@@ -17,7 +15,6 @@ module OCD
 
       def initialize(file, mode = 'r', options = {})
         super
-        @foo_file = file
         @warnings = []
         @violations = []
         @default_options = {
