@@ -1,6 +1,7 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
+    ansi (1.4.3)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
     coderay (1.0.9)
@@ -34,6 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ansi
   pry
   pry-remote
   pry-stack_explorer

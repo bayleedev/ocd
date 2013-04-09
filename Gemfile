@@ -1,4 +1,6 @@
-source :rubygems
+source 'https://rubygems.org'
+
+gem 'ansi'
 
 group :test do
   gem 'rake', '10.0.3'

@@ -7,7 +7,7 @@ module OCD
     # Each File contains its own model instance
     class File < ::File
 
-      include Observable
+      attr_reader :violations, :warnings
 
       def self.where(paths)
         Dir.glob(paths).map do |file_path|
@@ -18,14 +18,21 @@ module OCD
       def initialize(file, mode = 'r', options = {})
         super
         @foo_file = file
-        @violations = @warnings = @observers = []
+        @violations = @warnings = []
         @default_options = {
           message: 'Unknown error occured.',
           rule: 'Unknown',
-          file: path,
           column: 0,
           line: 0,
         }
+      end
+
+      def violations?
+        @violations.length > 0
+      end
+
+      def warnings?
+        @warnings.length > 0
       end
 
       def tokens
@@ -48,9 +55,7 @@ module OCD
       # ==== Examples
       #     file.add_violation(rule: self.class.name, line: 10, message: 'Line exceeds ')
       def add_violation(options)
-        changed
         @violations << options = @default_options.merge(options)
-        notify_observers(:violation, options)
       end
 
       # Add warning
@@ -65,9 +70,7 @@ module OCD
       # ==== Examples
       #     file.add_warning(rule: self.class.name, line: 10, message: 'Line exceeds ')
       def add_warning(options)
-        changed
         @warnings << options = @default_options.merge(options)
-        notify_observers(:warning, options)
       end
 
     end
